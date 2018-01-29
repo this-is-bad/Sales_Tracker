@@ -100,6 +100,7 @@ namespace TheSalesTracker
                         }
                     case MenuOption.Travel:
                         {
+                            Travel();
                             break;
                         }
                     case MenuOption.DisplayCities:
@@ -142,7 +143,7 @@ namespace TheSalesTracker
         /// </summary>
         private void Travel()
         {
-            string nextCity = _consoleView.DisplayGetNextCity();
+            string nextCity = _consoleView.DisplayGetNextCity(_salesperson);
             _salesperson.CitiesVisited.Add(nextCity);
         }
 

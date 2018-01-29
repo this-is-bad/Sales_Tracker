@@ -105,7 +105,7 @@ namespace TheSalesTracker
 
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("Written by John Velis");
+            ConsoleUtil.DisplayMessage("Co-opted by Shayne Jones");
             ConsoleUtil.DisplayMessage("Northwestern Michigan College");
             ConsoleUtil.DisplayMessage("");
 
@@ -133,7 +133,7 @@ namespace TheSalesTracker
         public Salesperson DisplaySetupAccount()
         {
             Salesperson salesperson = new Salesperson();
-            string s = "Last Name:".PadRight(12);
+            
             ConsoleUtil.HeaderText = "Account Setup";
             ConsoleUtil.DisplayReset();
 
@@ -159,7 +159,8 @@ namespace TheSalesTracker
         public void DisplayClosingScreen()
         {
             ConsoleUtil.DisplayReset();
-
+            Console.WriteLine("Do you wish to exit the application?  Y/N:");
+            Console.ReadLine();
             ConsoleUtil.DisplayMessage("Thank you for using The Traveling Salesperson Application.");
 
             DisplayContinuePrompt();
@@ -188,8 +189,10 @@ namespace TheSalesTracker
                 ConsoleUtil.DisplayMessage("");
                 Console.Write(
                     "\t" + "1. Travel" + Environment.NewLine +
-                    "\t" + "2. Display Cities" + Environment.NewLine +
-                    "\t" + "3. Display Account Info" + Environment.NewLine +
+                    "\t" + "2. Buy" + Environment.NewLine +
+                    "\t" + "3. Sell" + Environment.NewLine +
+                    "\t" + "4. Display Cities" + Environment.NewLine +
+                    "\t" + "5. Display Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -204,10 +207,18 @@ namespace TheSalesTracker
                         usingMenu = false;
                         break;
                     case '2':
-                        userMenuChoice = MenuOption.DisplayCities;
+                        userMenuChoice = MenuOption.Buy;
                         usingMenu = false;
                         break;
                     case '3':
+                        userMenuChoice = MenuOption.Sell;
+                        usingMenu = false;
+                        break;
+                    case '4':
+                        userMenuChoice = MenuOption.DisplayCities;
+                        usingMenu = false;
+                        break;
+                    case '5':
                         userMenuChoice = MenuOption.DisplayAccountInfo;
                         usingMenu = false;
                         break;
@@ -268,9 +279,16 @@ namespace TheSalesTracker
         /// get the next city to travel to from the user
         /// </summary>
         /// <returns>string City</returns>
-        public string DisplayGetNextCity()
+        public string DisplayGetNextCity(Salesperson salesperson)
         {
+
             string nextCity = "";
+            ConsoleUtil.HeaderText = "Travel";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayPromptMessage("Where would you like to travel to?");
+            salesperson.CitiesVisited.Add(Console.ReadLine());
+
 
             return nextCity;
         }

@@ -338,5 +338,19 @@ namespace TheSalesTracker
             string formattedText = text.PadRight(len);
             return formattedText;
         }
+
+        /// <summary>
+        /// validate Y/N response
+        /// </summary>
+        //public static char ValidateYN(char response)
+        //{
+        //    char result = "i";
+
+        //    if ("ny".Contains(response.ToString().ToLower()))
+        //    {
+        //        result = response;
+        //    }
+        //    return result;
+        //}
     }
 }
