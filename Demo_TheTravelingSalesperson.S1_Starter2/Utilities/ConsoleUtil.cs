@@ -342,15 +342,15 @@ namespace TheSalesTracker
         /// <summary>
         /// validate Y/N response
         /// </summary>
-        //public static char ValidateYN(char response)
-        //{
-        //    char result = "i";
+        public static char ValidateYN(char response)
+        {
+            char result = 'i';
 
-        //    if ("ny".Contains(response.ToString().ToLower()))
-        //    {
-        //        result = response;
-        //    }
-        //    return result;
-        //}
+            if ("ny".Contains(response.ToString().ToLower()))
+            {
+                result = response;
+            }
+            return result;
+        }
     }
 }
