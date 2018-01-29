@@ -1,4 +1,4 @@
-﻿namespace Demo_TheTravelingSalesperson
+﻿namespace TheSalesTracker
 {
     /// <summary>
     /// all menu options
@@ -7,6 +7,9 @@
     {
         None,
         Travel,
+        Buy,
+        Sell,
+        DisplayInventory,
         DisplayCities,
         DisplayAccountInfo,
         Exit

@@ -1,4 +1,4 @@
-﻿namespace Demo_TheTravelingSalesperson
+﻿namespace TheSalesTracker
 {
     /// <summary>
     /// all menu options

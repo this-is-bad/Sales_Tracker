@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S1_Solution", "Demo_TheTravelingSalesperson.S1_Solution\Demo_TheTravelingSalesperson.S1_Solution.csproj", "{12177A09-07F1-41BC-9F3A-32160EB21C7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S1_Starter", "Demo_TheTravelingSalesperson.S1_Starter\Demo_TheTravelingSalesperson.S1_Starter.csproj", "{9D30E880-8C55-4511-AB46-F64FDD5545AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo_TheTravelingSalesperson.S1_Starter2", "Demo_TheTravelingSalesperson.S1_Starter2\Demo_TheTravelingSalesperson.S1_Starter2.csproj", "{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheSalesTracker", "Demo_TheTravelingSalesperson.S1_Starter2\TheSalesTracker.csproj", "{C3B0B1EF-C3D6-485E-843A-F751BA918C2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

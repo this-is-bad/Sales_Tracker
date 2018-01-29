@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo_TheTravelingSalesperson
+namespace TheSalesTracker
 {
     /// <summary>
     /// MVC Controller class
@@ -114,6 +114,7 @@ namespace Demo_TheTravelingSalesperson
                         }
                     case MenuOption.Exit:
                         {
+                           _consoleView.DisplayExitPrompt();
                             break;
                         }
                     default:
@@ -125,6 +126,15 @@ namespace Demo_TheTravelingSalesperson
             // close the application
             //
             Environment.Exit(1);
+        }
+
+        /// <summary>
+        /// add the next city location to the list of cities
+        /// </summary>
+        private void Buy(Product product)
+        {
+          _consoleView.DisplayGetNumberOfUnitsToBuy(product);
+            
         }
 
         /// <summary>

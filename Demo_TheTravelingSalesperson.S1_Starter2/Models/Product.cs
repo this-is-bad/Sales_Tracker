@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo_TheTravelingSalesperson
+namespace TheSalesTracker
 {
-    class Product
+    public class Product
     {
         #region FIELDS
 
@@ -60,16 +60,21 @@ namespace Demo_TheTravelingSalesperson
         #endregion
 
         #region METHODS
-        static void AddProducts(int unitsToAdd)
+        public void AddProducts(int unitsToAdd)
         {
 
+            _numberOfUnits += unitsToAdd;
 
         }
 
-        static void SubtractProducts(int unitsToSubtract)
+        public void SubtractProducts(int unitsToSubtract)
         {
+            if (_numberOfUnits < unitsToSubtract)
+            {
+                _onBackorder = true;
+            }
 
-
+            _numberOfUnits -= unitsToSubtract;
         }
 
         #endregion

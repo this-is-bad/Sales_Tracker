@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Demo_TheTravelingSalesperson
+namespace TheSalesTracker
 {
     /// <summary>
     /// console utility class

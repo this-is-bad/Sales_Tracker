@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Demo_TheTravelingSalesperson
+namespace TheSalesTracker
 {
     /// <summary>
     /// Salesperson MVC Model class
@@ -13,7 +13,8 @@ namespace Demo_TheTravelingSalesperson
         private string _lastName;
         private string _accountID;
         private List<string> _citiesVisited;
-
+        private Product _currentStock;
+        
         #endregion
         
         #region PROPERTIES
@@ -42,6 +43,11 @@ namespace Demo_TheTravelingSalesperson
             set { _citiesVisited = value; }
         }
 
+        public Product CurrentStock
+        {
+            get { return _currentStock; }
+            set { _currentStock = value; }
+        }
         #endregion
         
         #region CONSTRUCTORS
@@ -49,6 +55,7 @@ namespace Demo_TheTravelingSalesperson
         public Salesperson()
         {
             _citiesVisited = new List<string>();
+            _currentStock = new Product();
         }
 
         public Salesperson(string firstName, string lastName, string acountID)

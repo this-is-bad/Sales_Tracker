@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Demo_TheTravelingSalesperson
+namespace TheSalesTracker
 {
     /// <summary>
     /// Salesperson MVC Model class

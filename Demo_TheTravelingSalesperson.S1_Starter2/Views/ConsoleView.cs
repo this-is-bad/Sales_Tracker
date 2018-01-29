@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo_TheTravelingSalesperson
+namespace TheSalesTracker
 {
     /// <summary>
     /// MVC View class
@@ -16,6 +16,10 @@ namespace Demo_TheTravelingSalesperson
         #endregion
 
         #region PROPERTIES
+
+        int MAXIMUM_ATTEMPTS = 5;
+        int MAXIMUM_BUYSELL_AMOUNT = 20;
+        int MINIMUM_BUYSELL_AMOUNT = 5;
 
         #endregion
 
@@ -32,6 +36,21 @@ namespace Demo_TheTravelingSalesperson
         #endregion
 
         #region METHODS
+
+        /// <summary>
+        /// display the current account information
+        /// </summary>
+        public void DisplayAccountInfo(Salesperson salesperson)
+        {
+            ConsoleUtil.HeaderText = "Account Info";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("First Name: " + salesperson.FirstName);
+            ConsoleUtil.DisplayMessage("Last Name: " + salesperson.LastName);
+            ConsoleUtil.DisplayMessage("Account ID: " + salesperson.AccountID);
+
+            DisplayContinuePrompt();
+        }
 
         /// <summary>
         /// initialize all console settings
@@ -214,6 +233,37 @@ namespace Demo_TheTravelingSalesperson
 
             return userMenuChoice;
         }
+
+        /// <summary>
+        /// get the number of units to buy for a product
+        /// </summary>
+        /// <returns>int unitsToBuy</returns>
+        public int DisplayGetNumberOfUnitsToBuy(Product product)
+        {
+            int unitsToBuy;
+
+            Console.WriteLine("How many units of {0} would you like to buy?", product.Type);
+
+            unitsToBuy = int.Parse(Console.ReadLine());
+
+            return unitsToBuy;
+        }
+
+        /// <summary>
+        /// get the number of units to sell for a product
+        /// </summary>
+        /// <returns>int unitsToBuy</returns>
+        public int DisplayGetNumberOfUnitsToSell(Product product)
+        {
+            int unitsToSell;
+
+            Console.WriteLine("How many units of {0} would you like to sell?", product.Type);
+
+            unitsToSell = int.Parse(Console.ReadLine());
+
+            return unitsToSell;
+        }
+
         /// <summary>
         /// get the next city to travel to from the user
         /// </summary>
@@ -242,20 +292,7 @@ namespace Demo_TheTravelingSalesperson
             DisplayContinuePrompt();
         }
 
-        /// <summary>
-        /// display the current account information
-        /// </summary>
-        public void DisplayAccountInfo(Salesperson salesperson)
-        {
-            ConsoleUtil.HeaderText = "Account Info";
-            ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayMessage("First Name: " + salesperson.FirstName);
-            ConsoleUtil.DisplayMessage("Last Name: " + salesperson.LastName);
-            ConsoleUtil.DisplayMessage("Account ID: " + salesperson.AccountID);
-
-            DisplayContinuePrompt();
-        }
 
         #endregion
 
