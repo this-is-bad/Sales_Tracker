@@ -85,7 +85,10 @@ namespace TheSalesTracker
         {
             ConsoleUtil.DisplayReset();
 
-            Console.CursorVisible = false;
+            ConsoleUtil.DisplayPromptMessage("Do you wish to exit the application?  Y/N:");
+            Console.ReadLine();
+
+            //Console.CursorVisible = false;
 
             ConsoleUtil.DisplayMessage("");
             ConsoleUtil.DisplayMessage("Thank you for using the application. Press any key to Exit.");
@@ -159,6 +162,7 @@ namespace TheSalesTracker
         public void DisplayClosingScreen()
         {
             ConsoleUtil.DisplayReset();
+
             Console.WriteLine("Do you wish to exit the application?  Y/N:");
             Console.ReadLine();
             ConsoleUtil.DisplayMessage("Thank you for using The Traveling Salesperson Application.");
@@ -191,8 +195,9 @@ namespace TheSalesTracker
                     "\t" + "1. Travel" + Environment.NewLine +
                     "\t" + "2. Buy" + Environment.NewLine +
                     "\t" + "3. Sell" + Environment.NewLine +
-                    "\t" + "4. Display Cities" + Environment.NewLine +
-                    "\t" + "5. Display Account Info" + Environment.NewLine +
+                    "\t" + "4. Display Inventory" + Environment.NewLine +
+                    "\t" + "5. Display Cities" + Environment.NewLine +
+                    "\t" + "6. Display Account Info" + Environment.NewLine +
                     "\t" + "E. Exit" + Environment.NewLine);
 
                 //
@@ -215,10 +220,14 @@ namespace TheSalesTracker
                         usingMenu = false;
                         break;
                     case '4':
-                        userMenuChoice = MenuOption.DisplayCities;
+                        userMenuChoice = MenuOption.DisplayInventory;
                         usingMenu = false;
                         break;
                     case '5':
+                        userMenuChoice = MenuOption.DisplayCities;
+                        usingMenu = false;
+                        break;
+                    case '6':
                         userMenuChoice = MenuOption.DisplayAccountInfo;
                         usingMenu = false;
                         break;
@@ -248,37 +257,102 @@ namespace TheSalesTracker
         /// <summary>
         /// get the number of units to buy for a product
         /// </summary>
-        /// <returns>int unitsToBuy</returns>
+        /// <returns>int numberOfUnitsToBuy</returns>
         public int DisplayGetNumberOfUnitsToBuy(Product product)
         {
-            int unitsToBuy;
+            ConsoleUtil.HeaderText = "Buy Inventory";
+            ConsoleUtil.DisplayReset();
 
-            Console.WriteLine("How many units of {0} would you like to buy?", product.Type);
+            //
+            // get number of units to buy
+            //
+            ConsoleUtil.DisplayMessage("Buying " + product.Type.ToString() + " products.");
+            ConsoleUtil.DisplayMessage("");
 
-            unitsToBuy = int.Parse(Console.ReadLine());
+            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToBuy))
+            {
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to buy.");
+                ConsoleUtil.DisplayMessage("By default, the number of products to buy will be set to zero.");
+                numberOfUnitsToBuy = 0;
+                DisplayContinuePrompt();
+            }
+            ConsoleUtil.DisplayReset();
 
-            return unitsToBuy;
+            ConsoleUtil.DisplayMessage(numberOfUnitsToBuy + " " + product.Type.ToString() + " products have been added to the Inventory.");
+
+            DisplayContinuePrompt();
+
+            return numberOfUnitsToBuy;
+        }
+
+        /// <summary>
+        /// notify user when units sold exceed units on hand
+        /// </summary>
+        public void DisplayBackOrderNotification(Product product, int numberOfUnitsSold)
+        {
+            ConsoleUtil.HeaderText = "Inventory Backorder Notification";
+            ConsoleUtil.DisplayReset();
+
+            int numberOfUnitsBackordered = Math.Abs(product.NumberOfUnits);
+            int numberOfUnitsShipped = numberOfUnitsSold - numberOfUnitsBackordered;
+
+            ConsoleUtil.DisplayMessage("Products Sold: " + numberOfUnitsSold);
+            ConsoleUtil.DisplayMessage("Products Shipped: " + numberOfUnitsShipped);
+            ConsoleUtil.DisplayMessage("Products on Backorder: " + numberOfUnitsBackordered);
+
+            DisplayContinuePrompt();
         }
 
         /// <summary>
         /// get the number of units to sell for a product
         /// </summary>
-        /// <returns>int unitsToBuy</returns>
+        /// <returns>int numberOfUnitsToSell</returns>
         public int DisplayGetNumberOfUnitsToSell(Product product)
         {
-            int unitsToSell;
+            ConsoleUtil.HeaderText = "Sell Inventory";
+            ConsoleUtil.DisplayReset();
 
-            Console.WriteLine("How many units of {0} would you like to sell?", product.Type);
+            //
+            // get number of units to buy
+            //
+            ConsoleUtil.DisplayMessage("Selling " + product.Type.ToString() + " products.");
+            ConsoleUtil.DisplayMessage("");
 
-            unitsToSell = int.Parse(Console.ReadLine());
+            if (!ConsoleValidator.TryGetIntegerFromUser(MINIMUM_BUYSELL_AMOUNT, MAXIMUM_BUYSELL_AMOUNT, MAXIMUM_ATTEMPTS, "products", out int numberOfUnitsToSell))
+            {
+                ConsoleUtil.DisplayMessage("It appears you are having difficulty setting the number of products to sell.");
+                ConsoleUtil.DisplayMessage("By default, the number of products to sell will be set to zero.");
+                numberOfUnitsToSell = 0;
+                DisplayContinuePrompt();
+            }
+            ConsoleUtil.DisplayReset();
 
-            return unitsToSell;
+            ConsoleUtil.DisplayMessage(numberOfUnitsToSell + " " + product.Type.ToString() + " products have been subtracted from the Inventory.");
+
+            DisplayContinuePrompt();
+
+            return numberOfUnitsToSell;
+        }
+
+        /// <summary>
+        /// displays the status of the current inventory
+        /// </summary>
+        public void DisplayInventory(Product product)
+        {
+            ConsoleUtil.HeaderText = "Current Inventory";
+            ConsoleUtil.DisplayReset();
+
+            ConsoleUtil.DisplayMessage("Product type: " + product.Type.ToString());
+            ConsoleUtil.DisplayMessage("Number of units: " + product.NumberOfUnits.ToString());
+            ConsoleUtil.DisplayMessage("");
+
+            DisplayContinuePrompt();
         }
 
         /// <summary>
         /// get the next city to travel to from the user
         /// </summary>
-        /// <returns>string City</returns>
+        /// <returns>string nextCity</returns>
         public string DisplayGetNextCity(Salesperson salesperson)
         {
 
@@ -310,7 +384,22 @@ namespace TheSalesTracker
             DisplayContinuePrompt();
         }
 
-
+        /// <summary>
+        /// changes string to lowercase with first letter response
+        /// adapted from: https://www.dotnetperls.com/uppercase-first-letter
+        /// </summary>
+        /// <param_name="s"></param_name>
+        /// <returns></returns>
+        static string UppercaseFirst(string s)
+        {
+            // Check for empty string.
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            // Return char and concatenation substring.
+            return char.ToUpper(s[0]) + s.Substring(1).ToLower();
+        }
 
         #endregion
 

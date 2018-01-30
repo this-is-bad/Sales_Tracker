@@ -103,6 +103,21 @@ namespace TheSalesTracker
                             Travel();
                             break;
                         }
+                    case MenuOption.Buy:
+                        {
+                            Buy();
+                            break;                        
+                        }
+                    case MenuOption.Sell:
+                        {
+                            Sell();
+                            break;
+                        }
+                    case MenuOption.DisplayInventory:
+                        {
+                            DisplayInventory();
+                            break;
+                        }
                     case MenuOption.DisplayCities:
                         {
                             DisplayCities();
@@ -130,12 +145,31 @@ namespace TheSalesTracker
         }
 
         /// <summary>
-        /// add the next city location to the list of cities
+        /// calls the ConsoleView.DisplayGetNumberOfUnitsToBuy method and the AddProduct method if a valid integer is returned
         /// </summary>
-        private void Buy(Product product)
+        private void Buy()
         {
-          _consoleView.DisplayGetNumberOfUnitsToBuy(product);
-            
+            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToBuy(_salesperson.CurrentStock);
+            _salesperson.CurrentStock.AddProducts(numberOfUnits);
+        }
+
+        /// <summary>
+        /// calls the ConsoleView.DisplayGetNumberOfUnitsToSell method and the SubtractProduct method if a valid integer is returned
+        /// </summary>
+        private void Sell()        
+        {
+            int numberOfUnits = _consoleView.DisplayGetNumberOfUnitsToSell(_salesperson.CurrentStock);
+            _salesperson.CurrentStock.SubtractProducts(numberOfUnits);
+
+            if (_salesperson.CurrentStock.OnBackorder)
+            {
+                _consoleView.DisplayBackOrderNotification(_salesperson.CurrentStock, numberOfUnits);
+            }
+        }
+
+        private void DisplayInventory()
+        {
+            _consoleView.DisplayInventory(_salesperson.CurrentStock);
         }
 
         /// <summary>

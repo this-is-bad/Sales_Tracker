@@ -164,5 +164,19 @@ namespace TheSalesTracker
 
             return userResponse;
         }
+
+        /// <summary>
+        /// validate Y/N response
+        /// </summary>
+        //public static bool? ValidateYN(string response => ("ny".Contains(LEFT(response.ToString().ToLower(), 1))) ? (response.ToString().ToLower() = "y") ? true : false : null; )
+        //{
+        //    //bool result;
+
+        //    //if ("ny".Contains(response.ToString().ToLower()))
+        //    //{
+        //    //    result = response.ToString().Replace("n", "false").Replace("y", "true");
+        //    //}
+        //    //return result;
+        //}
     }
 }
