@@ -168,15 +168,19 @@ namespace TheSalesTracker
         /// <summary>
         /// validate Y/N response
         /// </summary>
-        //public static bool? ValidateYN(string response => ("ny".Contains(LEFT(response.ToString().ToLower(), 1))) ? (response.ToString().ToLower() = "y") ? true : false : null; )
+        //public static bool? ValidateYN(char response)
         //{
-        //    //bool result;
+        //    //string result = "Invalid entry";
 
+        //    //bool result => "ny".Contains(LEFT(response.ToString().ToLower(), 1)) ?
+        //    //(response.ToString().ToLower() = "y") ? true : false : null;
+        //    string x = response.ToString().ToLower();
         //    //if ("ny".Contains(response.ToString().ToLower()))
         //    //{
-        //    //    result = response.ToString().Replace("n", "false").Replace("y", "true");
+        //    //result = response.ToString().Replace("n", false)
+        //    result = ("ny".Contains(x) ? ((x = "y") ? true : false);)
         //    //}
-        //    //return result;
+        //    return result;
         //}
     }
 }

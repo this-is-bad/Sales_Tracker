@@ -63,6 +63,11 @@ namespace TheSalesTracker
         public void AddProducts(int unitsToAdd)
         {
 
+            if (_numberOfUnits > unitsToAdd)
+            {
+                _onBackorder = false;
+            }
+
             _numberOfUnits += unitsToAdd;
 
         }

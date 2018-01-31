@@ -85,17 +85,45 @@ namespace TheSalesTracker
         {
             ConsoleUtil.DisplayReset();
 
-            ConsoleUtil.DisplayPromptMessage("Do you wish to exit the application?  Y/N:");
-            Console.ReadLine();
+              
+            ConsoleUtil.DisplayReset();
 
-            //Console.CursorVisible = false;
+            Console.WriteLine("Do you wish to exit the application?  Y/N:");
+            //response = ConsoleValidator.ValidateYN();
 
-            ConsoleUtil.DisplayMessage("");
-            ConsoleUtil.DisplayMessage("Thank you for using the application. Press any key to Exit.");
+            ConsoleKeyInfo userResponse = Console.ReadKey(true);
 
-            Console.ReadKey();
+            switch (userResponse.KeyChar)
+            {
+                case 'Y':
+                case 'y':
+                    ConsoleUtil.DisplayReset();
+                    ConsoleUtil.DisplayMessage("Thank you for using The Traveling Salesperson Application.");
+                    Console.ReadKey();
+                    System.Environment.Exit(1);
+                    break;
+                case 'N':
+                case 'n':
+                    DisplayContinuePrompt();
+                    break;
+                default:
+                    ConsoleUtil.DisplayMessage("Invalid entry.  Please try again.");
+                    DisplayContinuePrompt();
+                    break;
+            }
+           // DisplayContinuePrompt();
 
-            System.Environment.Exit(1);
+            //ConsoleUtil.DisplayPromptMessage("Do you wish to exit the application?  Y/N:");
+            //Console.ReadLine();
+
+            ////Console.CursorVisible = false;
+
+            //ConsoleUtil.DisplayMessage("");
+            //ConsoleUtil.DisplayMessage("Thank you for using the application. Press any key to Exit.");
+
+            //Console.ReadKey();
+
+            //System.Environment.Exit(1);
         }
 
 
